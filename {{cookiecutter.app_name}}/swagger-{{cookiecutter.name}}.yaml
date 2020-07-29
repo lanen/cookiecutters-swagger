@@ -1,0 +1,159 @@
+swagger: '2.0'
+info:
+  description: 提供`{{cookiecutter.name}}` CRUD 能力
+  version: 1.0.0
+  title: {{cookiecutter.name}} API 
+  termsOfService: ''
+  contact:
+    email: lanenqq@163.com
+
+host: {{cookiecutter.name}}.buyou.me
+basePath: /
+tags:
+  - name: {{cookiecutter.name}}
+    description: {{cookiecutter.name}}
+schemes:
+  - https
+  - http
+paths:
+  /{{cookiecutter.name}}:
+    post:
+      tags:
+        - {{cookiecutter.name}}
+      summary: Create a new {{cookiecutter.name}}
+      description: Create a new {{cookiecutter.name}}
+      operationId: create{{cookiecutter.newObject}}
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: {{cookiecutter.newObject}}
+          description: {{cookiecutter.newObject}} object that needs to be added
+          required: true
+          schema:
+            $ref: '#/definitions/{{cookiecutter.newObject}}'
+      responses:
+        '201':
+          description: Successful created {{cookiecutter.name}}
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '405':
+          description: Invalid input
+  /{{cookiecutter.name}}/{id}:
+    get:
+      tags:
+        - {{cookiecutter.name}}
+      summary: Get {{cookiecutter.simpleObject}} by id
+      description: get {{cookiecutter.simpleObject}} 
+      operationId: get{{cookiecutter.simpleObject}}
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          format: int64
+          description: {{cookiecutter.simpleObject}} object that needs to be added
+          required: true
+      responses:
+        '200':
+          description: Successful Get {{cookiecutter.name}}
+          schema:
+            $ref: '#/definitions/{{cookiecutter.simpleObject}}'
+        '405':
+          description: Invalid input
+    put:
+      tags:
+        - {{cookiecutter.name}}
+      summary: update {{cookiecutter.simpleObject}} 
+      description: update {{cookiecutter.simpleObject}} 
+      operationId: update{{cookiecutter.simpleObject}}
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          format: int64
+          description: {{cookiecutter.simpleObject}} object that needs to be added
+          required: true
+        - in: body
+          name: {{cookiecutter.simpleObject}}
+          description: {{cookiecutter.simpleObject}} object that needs to be added
+          required: true
+          schema:
+            $ref: '#/definitions/{{cookiecutter.simpleObject}}'
+      responses:
+        '200':
+          description: Successful Update {{cookiecutter.name}}
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - {{cookiecutter.name}}
+      summary: delete {{cookiecutter.simpleObject}} 
+      description: delete {{cookiecutter.simpleObject}} 
+      operationId: delete{{cookiecutter.simpleObject}}
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          format: int64
+          description: {{cookiecutter.simpleObject}} object that needs to be added
+          required: true
+      responses:
+        '200':
+          description: Successful Delete {{cookiecutter.name}}
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '405':
+          description: Invalid input 
+  /{{cookiecutter.name}}/all:
+    get:
+      tags:
+        - {{cookiecutter.name}}
+      summary: get list of {{cookiecutter.simpleObject}}
+      description: get list of {{cookiecutter.simpleObject}}
+      operationId: get{{cookiecutter.simpleObject}}List
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/{{cookiecutter.simpleObject}}'
+    
+definitions:
+  {{cookiecutter.newObject}}:
+    type: object
+    properties:
+      name:
+        type: string
+        minLength: 4
+        maxLength: 128
+  {{cookiecutter.simpleObject}}:
+    type: object
+    properties:
+      name:
+        type: string
+      {{cookiecutter.name}}Id:
+        type: string
+  ApiResponse:
+    type: "object"
+    properties:
+      state:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+externalDocs:
+  description: 如果想要进一步了解接口相关内, 如果是语法规范在这：
+  url: 'https://swagger.io/docs/specification/2-0/basic-structure/'

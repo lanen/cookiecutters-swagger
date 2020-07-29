@@ -1,0 +1,14 @@
+{
+    "groupId":"com.buyou.topic",
+    "artifactId":"topic-{{cookiecutter.name}}-api",
+    "artifactVersion":"1.0.0",
+    "basePackage" : "{{cookiecutter.pkg}}.{{cookiecutter.name}}",
+    "apiPackage" : "{{cookiecutter.pkg}}.{{cookiecutter.name}}.api",
+    "configPackage" : "config",
+    "modelPackage" : "{{cookiecutter.pkg}}.{{cookiecutter.name}}.dto",
+    "modelNameSuffix" : "Dto",
+    "interfaceOnly": true,
+    "useBeanValidation": true,
+	"java8": true,
+	"dateLibrary": "java8-localdatetime"
+}

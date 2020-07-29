@@ -1,0 +1,10 @@
+{
+	"project_name": "Swagger API Spec",
+	"app_name": "message",
+	"name": "message",
+	"pkg": "com.buyou.topic",
+	"newObject": "CreateMessage",
+	"simpleObject": "SimpleMessage",
+    "moduleCode": 100
+
+}
