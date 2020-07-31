@@ -1,6 +1,6 @@
 package {{cookiecutter.pkg}}.{{cookiecutter.name}}.infrastruction.exception;
 
-import {{cookiecutter.pkg}}.{{cookiecutter.name}}.infrastruction.errno.MessageErrors;
+import {{cookiecutter.pkg}}.{{cookiecutter.name}}.infrastruction.errno.{{cookiecutter.name|capitalize}}Errors;
 
 import com.buyou.domain.framework.exception.DomainException;
 
@@ -12,6 +12,6 @@ import com.buyou.domain.framework.exception.DomainException;
 public class {{cookiecutter.name|capitalize}}NotFoundException extends DomainException {
 
   public {{cookiecutter.name|capitalize}}NotFoundException() {
-    super(MessageErrors.NOT_FOUND);
+    super({{cookiecutter.name|capitalize}}Errors.NOT_FOUND);
   }
 }
