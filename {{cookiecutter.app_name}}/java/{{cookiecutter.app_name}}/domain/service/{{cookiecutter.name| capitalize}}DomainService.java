@@ -64,6 +64,13 @@ public class {{cookiecutter.name|capitalize}}DomainService {
         return this.{{cookiecutter.name}}Repository.list(elq);
     }
 
+    /** @return */
+    public int get{{cookiecutter.name|capitalize}}Count() {
+        var query = Wrappers.<{{cookiecutter.name|capitalize}}>lambdaQuery();
+        var elq = new EntityListQuery(null, query);
+        return this.{{cookiecutter.name}}Repository.count(elq);
+    }
+
     public {{cookiecutter.name|capitalize}} get{{cookiecutter.name|capitalize}}(Long id) {
         if (null == id || id < 0) {
             return null;

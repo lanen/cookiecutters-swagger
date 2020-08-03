@@ -19,10 +19,10 @@ public interface {{cookiecutter.name|capitalize}}Mapping {
 
   {{cookiecutter.name|capitalize}}Mapping IN = Mappers.getMapper({{cookiecutter.name|capitalize}}Mapping.class);
 
-  @Mappings({
-    @Mapping(source = "name", target = "name"),
-    @Mapping(source = "{{cookiecutter.name}}Id", target = "{{cookiecutter.name}}Id")
-  })
+  // @Mappings({
+  //   @Mapping(source = "name", target = "name"),
+  //   @Mapping(source = "{{cookiecutter.name}}Id", target = "{{cookiecutter.name}}Id")
+  // })
   {{cookiecutter.simpleObject}}Dto to{{cookiecutter.name|capitalize}}Dto({{cookiecutter.name|capitalize}} {{cookiecutter.name}});
 
   List<{{cookiecutter.simpleObject}}Dto> to{{cookiecutter.name|capitalize}}DtoList(List<{{cookiecutter.name|capitalize}}> {{cookiecutter.name}}List);

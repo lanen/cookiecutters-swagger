@@ -2,6 +2,7 @@ package {{cookiecutter.pkg}}.{{cookiecutter.name}}.infrastruction.controller;
 
 import {{cookiecutter.pkg}}.{{cookiecutter.name}}.api.{{cookiecutter.name|capitalize}}Api;
 import com.buyou.framework.spring.apispec.ApiResponseDto;
+import com.buyou.framework.spring.apispec.PageDto;
 import {{cookiecutter.pkg}}.{{cookiecutter.name}}.dto.{{cookiecutter.newObject}}Dto;
 import {{cookiecutter.pkg}}.{{cookiecutter.name}}.dto.{{cookiecutter.simpleObject}}Dto;
 import {{cookiecutter.pkg}}.{{cookiecutter.name}}.infrastruction.service.{{cookiecutter.name|capitalize}}Service;
@@ -32,9 +33,6 @@ public class {{cookiecutter.name|capitalize}}Controller implements {{cookiecutte
 
   @Override
   public ResponseEntity<ApiResponseDto> create{{cookiecutter.newObject}}(@Valid {{cookiecutter.newObject}}Dto {{cookiecutter.newObject}}) {
-    logger.info(
-        "create new {{cookiecutter.name}} by user {}",
-        SecurityContextHolder.getContext().getAuthentication().getName());
     logger.info("create new {{cookiecutter.name}} with dto:{}", {{cookiecutter.newObject}});
     {{cookiecutter.name}}Service.create{{cookiecutter.name|capitalize}}({{cookiecutter.newObject}});
     return ResponseEntity.ok(new ApiResponseDto.Success<Object>().build());
@@ -60,8 +58,11 @@ public class {{cookiecutter.name|capitalize}}Controller implements {{cookiecutte
   }
 
   @Override
-  public ResponseEntity<List<{{cookiecutter.simpleObject}}Dto>> get{{cookiecutter.simpleObject}}List() {
-    return ResponseEntity.ok({{cookiecutter.name|capitalize}}Mapping.IN.to{{cookiecutter.name|capitalize}}DtoList({{cookiecutter.name}}Service.get{{cookiecutter.name|capitalize}}List()));
+  public ResponseEntity<ApiResponseDto> get{{cookiecutter.simpleObject}}List() {
+    var total = this.{{cookiecutter.name}}Service.get{{cookiecutter.name|capitalize}}Count();
+    var items = {{cookiecutter.name|capitalize}}Mapping.IN.to{{cookiecutter.name|capitalize}}DtoList({{cookiecutter.name}}Service.get{{cookiecutter.name|capitalize}}List());
+    var page = new PageDto<>(total, items);
+    return ResponseEntity.ok(new ApiResponseDto.Success<>().data(page).build());
   }
 
   @Override

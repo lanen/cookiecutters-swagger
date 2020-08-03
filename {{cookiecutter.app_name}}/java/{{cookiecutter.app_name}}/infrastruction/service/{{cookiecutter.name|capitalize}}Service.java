@@ -34,18 +34,26 @@ public class {{cookiecutter.name|capitalize}}Service {
    }
 
   @Transactional
-  public void create{{cookiecutter.name|capitalize}}({{cookiecutter.newObject}}Dto {{cookiecutter.newObject|lower}}) {
-     {{cookiecutter.name}}DomainService.new{{cookiecutter.name|capitalize}}(
+  public {{cookiecutter.name|capitalize}} create{{cookiecutter.name|capitalize}}({{cookiecutter.newObject}}Dto dto) {
+    var sutff = {{cookiecutter.name}}DomainService.new{{cookiecutter.name|capitalize}}(
          () -> {
            var new{{cookiecutter.name|capitalize}} = new {{cookiecutter.name|capitalize}}();
-           new{{cookiecutter.name|capitalize}}.setName({{cookiecutter.newObject|lower}}.getName());
+           new{{cookiecutter.name|capitalize}}.setName(dto.getName());
            new{{cookiecutter.name|capitalize}}.set{{cookiecutter.name|capitalize}}Id(this.idGenerator.get());
            return new{{cookiecutter.name|capitalize}};
          });
+    if (null != stuff) {
+        // success
+    }
+    return stuff;
    }
  
   public List<{{cookiecutter.name|capitalize}}> get{{cookiecutter.name|capitalize}}List() {
     return {{cookiecutter.name}}DomainService.get{{cookiecutter.name|capitalize}}List();
+  }
+
+  public int get{{cookiecutter.name|capitalize}}Count() {
+    return {{cookiecutter.name}}DomainService.get{{cookiecutter.name|capitalize}}Count();
   }
  
   public {{cookiecutter.name|capitalize}} get{{cookiecutter.name|capitalize}}(Long {{cookiecutter.name}}Id) {

@@ -62,4 +62,13 @@ public class {{cookiecutter.name|capitalize}}RepositoryImpl implements {{cookiec
       var p = {{cookiecutter.name}}Mapper.selectPage(page, query);
       return p.getRecords();
     }
+
+    @Override
+    public int count(EntityListQuery entityListQuery) {
+      if (null == entityListQuery) {
+        return 0;
+      }
+      var query = (Wrapper<{{cookiecutter.name|capitalize}}>) entityListQuery.getQuery();
+      return {{cookiecutter.name}}Mapper.selectCount( query);
+    }
 }
